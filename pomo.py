@@ -17,6 +17,10 @@ def to_seconds(s):
 def from_seconds(s):
     return "{:02d}:{:02d}".format(s//60, s%60)
 
+def set_titel(s):
+    root.wm_title(str(s))
+    root.title = str(s)
+
 # root = TkinterDnD.Tk()  # notice - use this instead of tk.Tk()
 root = tk.Tk()
 root.geometry("400x400")
@@ -69,14 +73,15 @@ class Thread(threading.Thread):
             if event.is_set():
                 event.clear()
                 rtime.config(text="--:--")
+                set_titel("Pomo timer")
                 break
 
             time.sleep(1)
             # winsound.Beep(440, 500)
             self.rseconds = self.rseconds - 1
             rtime.config(text=from_seconds(self.rseconds))
-            root.wm_title(str(from_seconds(self.rseconds)))
-            root.title = str(from_seconds(self.rseconds))
+            set_titel(from_seconds(self.rseconds))
+            
             
 
 
@@ -86,6 +91,7 @@ def start_pomo():
     winsound.Beep(440, 500)
     rseconds = to_seconds(wktime)
     t = Thread(rseconds)
+    t.daemon = True
     t.start()
     root.iconbitmap("ico.ico")
     
