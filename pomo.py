@@ -23,7 +23,7 @@ def set_titel(s):
 
 # root = TkinterDnD.Tk()  # notice - use this instead of tk.Tk()
 root = tk.Tk()
-root.geometry("400x400")
+root.geometry("300x300")
 root.title("Pomo timer")
 root.maxsize(800, 400)
 
@@ -79,8 +79,16 @@ class Thread(threading.Thread):
             time.sleep(1)
             # winsound.Beep(440, 500)
             self.rseconds = self.rseconds - 1
-            rtime.config(text=from_seconds(self.rseconds))
-            set_titel(from_seconds(self.rseconds))
+            if self.rseconds == 0:
+                winsound.Beep(440, 500)
+                if break_work.get() == WORK:
+                    self.rseconds = to_seconds(break_time_var.get())
+                    break_work.set(BREAK)
+                else:
+                    self.rseconds = to_seconds(work_time_var.get())
+                    break_work.set(WORK)
+            rtime.config(text=from_seconds(self.rseconds), fg="red" if break_work.get() == WORK else "green")
+            set_titel("{} / {}".format(from_seconds(self.rseconds), "working" if break_work.get() == WORK else "break" ))
             
             
 
