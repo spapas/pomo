@@ -83,6 +83,7 @@ def start_pomo():
     rseconds = to_seconds(wktime)
     t = Thread(rseconds)
     t.start()
+    root.iconbitmap("ico.ico")
 
 
 
