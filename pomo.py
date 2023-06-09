@@ -17,8 +17,9 @@ def to_seconds(s):
 def from_seconds(s):
     return "{:02d}:{:02d}".format(s//60, s%60)
 
-root = TkinterDnD.Tk()  # notice - use this instead of tk.Tk()
-root.geometry("800x400")
+# root = TkinterDnD.Tk()  # notice - use this instead of tk.Tk()
+root = tk.Tk()
+root.geometry("400x400")
 root.title("Pomo timer")
 root.maxsize(800, 400)
 
@@ -84,7 +85,7 @@ def start_pomo():
     t = Thread(rseconds)
     t.start()
     root.iconbitmap("ico.ico")
-
+    
 
 
 def stop_promo():
