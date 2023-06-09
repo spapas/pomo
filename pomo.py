@@ -60,6 +60,7 @@ class Thread(threading.Thread):
     def __init__(self, rseconds):
         self.rseconds = rseconds
         rtime.config(text=from_seconds(self.rseconds))
+        
         threading.Thread.__init__(self)
         
         # helper function to execute the threads
@@ -74,6 +75,8 @@ class Thread(threading.Thread):
             # winsound.Beep(440, 500)
             self.rseconds = self.rseconds - 1
             rtime.config(text=from_seconds(self.rseconds))
+            root.wm_title(str(from_seconds(self.rseconds)))
+            root.title = str(from_seconds(self.rseconds))
             
 
 
@@ -85,6 +88,7 @@ def start_pomo():
     t = Thread(rseconds)
     t.start()
     root.iconbitmap("ico.ico")
+    
     
 
 
