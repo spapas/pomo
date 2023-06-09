@@ -74,7 +74,7 @@ class Thread(threading.Thread):
                 event.clear()
                 rtime.config(text="--:--")
                 set_titel("Pomo timer")
-                break
+                
 
             time.sleep(1)
             # winsound.Beep(440, 500)
@@ -83,10 +83,16 @@ class Thread(threading.Thread):
                 winsound.Beep(440, 500)
                 if break_work.get() == WORK:
                     self.rseconds = to_seconds(break_time_var.get())
+                    root.iconbitmap("walk.ico")
                     break_work.set(BREAK)
+                    
                 else:
                     self.rseconds = to_seconds(work_time_var.get())
+                    
                     break_work.set(WORK)
+                    root.iconbitmap("work.ico")
+
+                
             rtime.config(text=from_seconds(self.rseconds), fg="red" if break_work.get() == WORK else "green")
             set_titel("{} / {}".format(from_seconds(self.rseconds), "working" if break_work.get() == WORK else "break" ))
             
@@ -97,11 +103,17 @@ def start_pomo():
     wktime = work_time_var.get()
     bktime = break_time_var.get()
     winsound.Beep(440, 500)
-    rseconds = to_seconds(wktime)
+    if break_work.get() == WORK:
+        root.iconbitmap("work.ico")
+        rseconds = to_seconds(wktime)
+    else:
+        root.iconbitmap("walk.ico")
+        rseconds = to_seconds(bktime)
+    
     t = Thread(rseconds)
     t.daemon = True
     t.start()
-    root.iconbitmap("ico.ico")
+    
     
     
 
