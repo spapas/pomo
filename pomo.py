@@ -96,7 +96,6 @@ class Thread(threading.Thread):
             rtime.config(text=from_seconds(self.rseconds), fg="red" if break_work.get() == WORK else "green")
             set_titel("{} / {}".format(from_seconds(self.rseconds), "working" if break_work.get() == WORK else "break" ))
             
-            
 
 
 def start_pomo():

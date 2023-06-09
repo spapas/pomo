@@ -27,28 +27,28 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Package dir
-        run: pyinstaller -F -w pdfmerger.py --additional-hooks-dir=.  --onedir --noconsole
+        run: pyinstaller -F -w pomo.py --additional-hooks-dir=.  --onedir --noconsole
       - uses: vimtor/action-zip@v1
         name: Zip the directory release
         with:
-          files: dist/pdfmerger
-          dest: pdfmerger.zip
+          files: dist/pomo
+          dest: pomo.zip
       - name: Package exe
-        run: pyinstaller -F -w pdfmerger.py --additional-hooks-dir=.  --onefile --noconsole
+        run: pyinstaller -F -w pomo.py --additional-hooks-dir=.  --onefile --noconsole
       - uses: actions/upload-artifact@v3
         with:
-          name: pdfmerger.zip
-          path: ${{ github.workspace }}/pdfmerger.zip
+          name: pomo.zip
+          path: ${{ github.workspace }}/pomo.zip
       - uses: actions/upload-artifact@v3
         with:
-          name: pdfmerger.exe
-          path: ${{ github.workspace }}/dist/pdfmerger.exe
+          name: pomo.exe
+          path: ${{ github.workspace }}/dist/pomo.exe
       
       - uses: ncipollo/release-action@v1
         name: Publish Release
         with:
           token: ${{secrets.GITHUB_TOKEN}}
-          artifacts: "pdfmerger.zip,dist/pdfmerger.exe"
+          artifacts: "pomo.zip,dist/pomo.exe"
           
       
       #- name: Upload pytest test results
