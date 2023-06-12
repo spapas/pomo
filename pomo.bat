@@ -1,1 +1,1 @@
-pyinstaller -F -w pomo.py --additional-hooks-dir=.  --onedir --noconsole
+pyinstaller -F -w pomo.py  --onedir --noconsole

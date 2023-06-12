@@ -72,8 +72,9 @@ class Thread(threading.Thread):
         while(1):
             if event.is_set():
                 event.clear()
-                rtime.config(text="--:--")
+                rtime.config(text="--:--", fg="black")
                 set_titel("Pomo timer")
+                break
                 
 
             time.sleep(1)
