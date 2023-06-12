@@ -8,7 +8,7 @@ a = Analysis(
     ['pomo.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('walk.ico', '.'), ('work.ico', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

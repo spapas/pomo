@@ -2,9 +2,7 @@ import tkinter as tk
 import winsound
 import time
 from tkinter import ttk
-from tkinter import filedialog as fd
 from tkinter.messagebox import showinfo
-from tkinterdnd2 import DND_FILES, TkinterDnD
 import threading
 
 WORK = 1
@@ -21,11 +19,11 @@ def set_titel(s):
     root.wm_title(str(s))
     root.title = str(s)
 
-# root = TkinterDnD.Tk()  # notice - use this instead of tk.Tk()
 root = tk.Tk()
 root.geometry("300x300")
 root.title("Pomo timer")
-root.maxsize(800, 400)
+root.maxsize(300, 300)
+root.minsize(300, 300)
 
 
 tk.Label(root, text="Pomodoro timer", font=("Helvetica", 20)).grid(row=0, column=0,columnspan=2, padx=5, pady=5)
@@ -35,10 +33,10 @@ break_work = tk.IntVar(value=WORK)
 
 work_time_var = tk.StringVar()
 work_time_var.set("25:00")
-work_time_radio = tk.Radiobutton(root, text="", value=WORK, variable=break_work)
+work_time_radio = ttk.Radiobutton(root, text="", value=WORK, variable=break_work, takefocus=False)
 work_time_radio.grid(row=1, column=3)
 
-break_time_radio = tk.Radiobutton(root, text="", value=BREAK, variable=break_work)
+break_time_radio = ttk.Radiobutton(root, text="", value=BREAK, variable=break_work, takefocus=False)
 break_time_radio.grid(row=2, column=3)
 
 

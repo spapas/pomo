@@ -27,14 +27,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Package dir
-        run: pyinstaller -F -w pomo.py --additional-hooks-dir=.  --onedir --noconsole
+        run: pyinstaller -F -w pomo.py   --onedir --noconsole  --add-data  "walk.ico;." --add-data  "work.ico;."
       - uses: vimtor/action-zip@v1
         name: Zip the directory release
         with:
           files: dist/pomo
           dest: pomo.zip
       - name: Package exe
-        run: pyinstaller -F -w pomo.py --additional-hooks-dir=.  --onefile --noconsole
+        run: pyinstaller -F -w pomo.py   --onefile --noconsole --add-data  "walk.ico;." --add-data  "work.ico;."
       - uses: actions/upload-artifact@v3
         with:
           name: pomo.zip
