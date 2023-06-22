@@ -2,8 +2,7 @@ import tkinter as tk
 import winsound
 import time
 from tkinter import ttk
-from tkinter.messagebox import showinfo
-import threading
+
 
 WORK = 1
 BREAK = 2
@@ -23,14 +22,12 @@ NOTE_FREQUENCIES = {
     "F#": 370,
     "G#": 415,
     "A#": 466,
-
 }
 
 
 def playnote(n, d):
     f = NOTE_FREQUENCIES[n]
     winsound.Beep(f, d)
-    
 
 def playnotes(notes):
     for n in notes:
@@ -42,7 +39,6 @@ def to_nseconds(s):
 
 def from_nseconds(s):
     s = round(s / BILLION)
-
     return "{:02d}:{:02d}".format(s//60, s%60)
 
 def set_titel(s):
@@ -142,11 +138,7 @@ start_button.grid(row=3, column=0, padx=5, pady=5)
 stop_button = ttk.Button(root, text="Stop", command=stop_promo)
 stop_button.grid(row=3, column=1, padx=5, pady=5)
 
-
-
-
 root.mainloop()
-
 
 #playnotes("EEFGGFEDCCDEEDD")
 #playnotes("EEFGGFEDCCDEDCC")
